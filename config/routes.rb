@@ -9,11 +9,11 @@ devise_for :customers,skip: [:passwords,], controllers: {
 root 'homes#top'
   get 'homes/about' => 'homes#about'
 
-namespace :customers do
+namespace :public do #namespace :customersをpublicに変更しました。
 
   resource :customers, only: [:show, :update, :edit, :unsubscribe, :withdraw]
   resources :address, only: [:index, :create, :edit, :update, :destroy]
-  resources :product, only: [:index, :show]
+  resources :products, only: [:index, :show]
   resources :cart_items, only: [:index, :create, :update, :destroy, :all_destroy]
   resources :orders, only: [:new, :confirm, :create, :complate, :index, :show]
 end
