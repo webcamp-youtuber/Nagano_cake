@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
- 
+
 # 顧客用
 devise_for :customers,skip: [:passwords,], controllers: {
   registrations: "public/registrations",
@@ -7,22 +7,23 @@ devise_for :customers,skip: [:passwords,], controllers: {
 }
 
 root 'homes#top'
-get '/home/about' => 'homes#about'
+  get 'homes/about' => 'homes#about'
 
 namespace :customers do
+
   resource :customers, only: [:show, :update, :edit, :unsubscribe, :withdraw]
   resources :address, only: [:index, :create, :edit, :update, :destroy]
   resources :product, only: [:index, :show]
   resources :cart_items, only: [:index, :create, :update, :destroy, :all_destroy]
   resources :orders, only: [:new, :confirm, :create, :complate, :index, :show]
 end
-  
+
 
 # 管理者用
 devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   sessions: "admin/sessions"
 }
-  
+
 namespace :admin do
   resources :customers, only: [:index, :edit, :create, :update]
   resources :products, only: [:new, :index, :show, :edit, :update, :create]
