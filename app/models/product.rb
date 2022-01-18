@@ -7,6 +7,10 @@ class Product < ApplicationRecord
 
   attachment :image
 
+  def with_tax_price
+     (price_without_tax * 1.1).floor
+  end
+
 
 
 end
