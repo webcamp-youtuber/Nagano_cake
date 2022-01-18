@@ -1,0 +1,16 @@
+<div class="cover-user-edit">
+  <div class="container">
+    <div class="row justify-content-center">
+      <h1 class="font-weight-normal mt-5 mb-5">本当に退会しますか？</h1>
+    </div>
+    <div>
+      <p>退会すると会員情報や、</p></br>
+      <p>これまでの履歴が閲覧できなくなります。</p></br>
+      <p>退会する場合は、「退会する」をクリックしてください。</p></br>
+    </div>
+    <div>
+      <%= link_to '退会しない', mypage_path(@customer) %>
+      <%= link_to "退会する", withdraw_cutomer_path(@customer), method: :patch %>
+    </div>
+  </div>
+</div>
