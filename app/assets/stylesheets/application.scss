@@ -14,6 +14,9 @@
  *= require_self
  */
 @import "bootstrap";
+@import 'font-awesome-sprockets';
+@import 'font-awesome';
+
 
 .top-container {
    background-image: image-url('top.png');
@@ -29,3 +32,4 @@
    background-image: image-url('top-cake.jpeg');
    background-size: cover;
 }
+
