@@ -4,14 +4,11 @@
 
 @import "bootstrap";
 
+ //topページ用
 .top-container {
    background-image: image-url('top.png');
    background-size: cover;
-}
-
-.about-container {
-   background-image: image-url('top.png');
-   background-size: cover;
+   min-height: 100vh;
 }
 
 .top-cake {
@@ -25,6 +22,18 @@
   right: 22px;
 }
 
-.explanation{
-  background-color: rgba( 255, 255, 255, 0.5); 
+.top-explanation{
+  background-color: rgba( 255, 255, 255, 0.2);
 }
+
+//aboutページ用
+.about-container {
+   background-image: image-url('top.png');
+   background-size: cover;
+   min-height: 100vh;
+}
+
+.about-explanation{
+  background-color: rgba( 255, 255, 255, 0.5);
+}
+//top・about共通
