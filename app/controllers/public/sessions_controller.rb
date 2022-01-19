@@ -1,8 +1,5 @@
 class Public::SessionsController < ApplicationController
 
-  def index
-
-  end
 
   def create
     customer = Customer.find_by(email: params[:session][:email].downcase)
@@ -15,8 +12,6 @@ class Public::SessionsController < ApplicationController
       render 'new'
     end
   end
-
-
 
   def destroy
     log_out if logged_in?

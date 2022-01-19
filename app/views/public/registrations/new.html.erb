@@ -2,7 +2,7 @@
 
   <h2>新規会員登録</h2>
 
-  <%= form_with model: @customer, url: users_sign_up_confirm_path(@customer), local: true do |f| %>
+  <%= form_with model: @customer, url: customers_sign_up_confirm_path(@customer), local: true do |f| %>
 
     <%= f.label :last_name %>
     <%= f.text_field :last_name %>
@@ -23,15 +23,23 @@
     <%= f.text_field :telephone_number %>
 
     <%= f.label :encrypted_password %>
+     <%= f.password_field :encrypted_password_confirmation %>
     <% if @minimum_encrypted_password_length %>
-      (<%= @minimum_encrypted_password_length %>文字以上)
+      (<%= @minimum_encrypted_password_length %>6文字以上)
     <% end %>
 
     <%= f.password_field :encrypted_password %>
     <%= f.password_field :encrypted_password_confirmation %>
 
-    <%= render "sessions/shared/links" %>
 
-    <%= f.submit "確認" %>
+    <div class="grid-6">
+      <%= link_to "新規登録", new_customer_registration_path, class: 'post' %>
+      <%= f.submit "新規登録", class: "btn btn-primary" %>
+    </div>
+
+
+    <p>既に登録済みの方</p>
+    <p><%= link_to "こちら", 'sessions_new_path' %></p>
+    <p>からログインしてください。</p>
   <% end %>
 </div>
