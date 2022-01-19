@@ -26,9 +26,5 @@ class Public::RegistrationsController < ApplicationController
     end
   end
 
-  private
-　def customer_params
-　　params_require(:customer).parmit(:id, :name, :email, :encrypted_password, :encrypted_password_confirmation)
-　end
 
 end
