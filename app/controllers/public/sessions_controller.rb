@@ -1,23 +1,23 @@
 class Public::SessionsController < ApplicationController
+  before_action :already_login?, except: :destroy
 
+  def new
+  end
 
   def create
-    customer = Customer.find_by(email: params[:session][:email].downcase)
-    if customer && customer.authenticate(params[:session][:encrypted_password])
-      log_in customer
-      remember customer
-      redirect_to root_url
+    customer = Customer.find_by_email(params[:email])
+    if customer && customer.authenticate(params[:password])
+      session[:customer_id] = customer.id
+      redirect_to customer_path, notice: "you have successfully login"
     else
-      flash[:danger] = 'Invalid email/password combination'
-      render 'new'
+      flash.now[:alert] = "Email or Password is invalid"
+      render :new
     end
   end
 
   def destroy
-    log_out if logged_in?
-    redirect_to root_url
+    session[:customer_id] = nil
+    redirect_to root_path, notice: "you have successfully logout"
   end
-
-
 
 end
