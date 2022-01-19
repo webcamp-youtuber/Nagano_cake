@@ -7,10 +7,15 @@ class Product < ApplicationRecord
 
   attachment :image
 
-  def with_tax_price
-     (price_without_tax * 1.1).floor
+  def add_tax_price
+     (self.price * 1.1).round
   end
 
+  validates :name, presence: true
+  validates :genre_id, presence: true
+  validates :image, presence: true
+  validates :explanation, presence: true
+  validates :price, presence: true
 
 
 end

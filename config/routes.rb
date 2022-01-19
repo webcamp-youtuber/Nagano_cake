@@ -25,7 +25,6 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 }
 
 namespace :admin do
-  root to:"order#top"
   resources :customers, only: [:index, :edit, :create, :update]
   resources :products, only: [:new, :index, :show, :edit, :update, :create]
   get 'top' => 'products#top'
