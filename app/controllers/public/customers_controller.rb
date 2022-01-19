@@ -1,13 +1,16 @@
 class Public::CustomersController < ApplicationController
    before_action :ensure_correct_customer, only: [:edit, :update]
 
+  def index
+    @customers = Customer.all
+  end
+
   def show
-    @customer = Customer.find(params[:id])
-    @posts = @customer.posts.page(params[:page]).reverse_order
+    @customer = Customer.find_by(id: params[:id])
   end
 
   def edit
-    @customer = Customer.find(params[:id])
+    @customer = Customer.find_by(id: params[:id])
     if @customer != current_customer
       redirect_to customer_path
     end
@@ -41,9 +44,7 @@ class Public::CustomersController < ApplicationController
 
   def ensure_correct_customer
     @customer = Customer.find_by(id:params[:id])
-    if @customer.id != current_customer.id
-      redirect_to customer_path(current_customer)
-    end
+
   end
 
 end
