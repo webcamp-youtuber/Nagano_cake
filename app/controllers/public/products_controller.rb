@@ -7,15 +7,9 @@ class Public::ProductsController < ApplicationController
   def show
     @genres = Genre.all
     @product = Product.find(params[:id])
+    @image = @product.image
+    @cart_items =CartItem.new
   end
-
-
-
-
-
-def product_params
-   params.require(:product).permit(:product_name, :image, :genre, :introduction, :is_sales_status, :price_without_tax)
-end
 
 
 end
