@@ -19,11 +19,16 @@ class Public::RegistrationsController < ApplicationController
     )
     if @customer.save
       session[:customer_id] = @customer.id
-      flash[:notice] = "ユーザー登録が完了しました"
+      flash[:notice] = "会員登録が完了しました"
       redirect_to("/customers/#{@customer.id}")
     else
       render("customers/new")
     end
   end
+
+  private
+　def customer_params
+　　params_require(:customer).parmit(:id, :name, :email, :encrypted_password, :encrypted_password_confirmation)
+　end
 
 end
