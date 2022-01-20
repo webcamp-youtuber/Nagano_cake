@@ -1,6 +1,6 @@
 class Public::SessionsController < ApplicationController
   before_action :already_login?, except: :destroy
-  before_action :reject_inactive_user, only: [:create]
+  before_action :customer_state, only: [:create]
 
   def new
   end
@@ -27,6 +27,14 @@ class Public::SessionsController < ApplicationController
     return if !@customer
     if @customer.valid_password?(params[:customer][:password])
     end
+    if true && !false
+     → true
+    end
+    if true && !true
+     → false
+    end
   end
+
+
 
 end
