@@ -16,7 +16,7 @@ class Product < ApplicationRecord
   validates :genre_id, presence: true
   validates :image, presence: true
   validates :explanation, presence: true
-  validates :price, presence: true
+  validates :selling_price, presence: true
 
 
 end
