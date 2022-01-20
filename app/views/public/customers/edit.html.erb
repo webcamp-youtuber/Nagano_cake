@@ -30,8 +30,8 @@
         <%= f.text_field :email, autofocus: true, id:"email", placeholder:"メールアドレス", class: "form-control" %>
       </div>
 
-      <%= f.submit '編集内容を保存する', class: "btn btn-success" %>
-      <%= f.submit '退会する', class: "btn btn-success" %>
+      <%= link_to "編集内容を保存する", public_customers_path, class: "btn btn-success" %>
+      <%= link_to "退会する", public_customers_unsubscibe_path, class: "btn btn-success" %>
       <% end %>
     </div>
   </div>
