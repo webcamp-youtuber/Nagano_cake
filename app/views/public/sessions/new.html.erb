@@ -6,23 +6,23 @@
   <div class="col-md-6 col-md-offset-3">
    <%= form_with model: @customer, url: customer_session_path, local: true do |f| %>
     <div class="field">
-        <%= f.label :email %><br>
-        <%= f.text_field :email %>
+      <%= f.label :email %><br>
+      <%= f.text_field :email %>
     </div>
 
     <div class="field">
-        <%= f.label :password %><br>
-        <%= f.password_field :password %>
+      <%= f.label :password %><br>
+      <%= f.password_field :password %>
     </div>
 
 
       <div class="grid-6">
-            <%= link_to "ログイン", public_products_path, class: "btn btn-primary" %>
+        <%= link_to "ログイン", public_products_path, class: "btn btn-primary" %>
       </div>
     <% end %>
 
     <p>会員登録がお済みでない方</p>
-    <p><%= link_to "こちら", 'new_customer_registration_path' %></p>
+    <p><%= link_to "こちら", new_customer_registration_path %></p>
     <p>から新規登録を行なってください。</p>
   </div>
 </div>
