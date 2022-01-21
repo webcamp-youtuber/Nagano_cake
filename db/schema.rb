@@ -98,7 +98,7 @@ ActiveRecord::Schema.define(version: 2022_01_19_114057) do
     t.string "image_id"
     t.text "explanation"
     t.integer "selling_price"
-    t.boolean "is_selling"
+    t.boolean "is_selling",
     t.datetime "create_at"
     t.datetime "update_at"
     t.datetime "created_at", null: false

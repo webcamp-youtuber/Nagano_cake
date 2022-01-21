@@ -5,7 +5,7 @@ class Product < ApplicationRecord
   has_many :orders, through: :order_datails
   has_many :order_details
 
-  enum is_selling: { on_sale: 0, no_sale: 1}
+  enum is_selling: { on_sale: true, no_sale: false }
   attachment :image
 
   def add_tax_price
@@ -17,6 +17,6 @@ class Product < ApplicationRecord
   validates :image, presence: true
   validates :explanation, presence: true
   validates :selling_price, presence: true
-
+  validates :is_selling, presence: true
 
 end
