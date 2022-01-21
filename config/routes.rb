@@ -17,6 +17,10 @@ namespace :public do #namespace :customersをpublicに変更しました。
   resources :products, only: [:index, :show]
   resources :cart_items, only: [:index, :create, :update, :destroy, :all_destroy]
   resources :orders, only: [:new, :confirm, :create, :complate, :index, :show]
+
+  get 'customers/unsubscribe' => 'customers#unsubscribe'
+  patch 'customers/withdraw' => 'customers#withdraw'
+
 end
 
 
