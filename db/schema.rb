@@ -42,13 +42,6 @@ ActiveRecord::Schema.define(version: 2022_01_19_114057) do
   end
 
   create_table "customers", force: :cascade do |t|
-    t.string "last_name"
-    t.string "first_name"
-    t.string "last_name_kana"
-    t.string "first_name_kana"
-    t.string "post_code"
-    t.string "address"
-    t.string "telephon_number"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -98,7 +91,7 @@ ActiveRecord::Schema.define(version: 2022_01_19_114057) do
     t.string "image_id"
     t.text "explanation"
     t.integer "selling_price"
-    t.boolean "is_selling",
+    t.boolean "is_selling"
     t.datetime "create_at"
     t.datetime "update_at"
     t.datetime "created_at", null: false
