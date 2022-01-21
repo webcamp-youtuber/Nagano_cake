@@ -16,27 +16,27 @@
      <tr>
       <tr>
        <th class="table__col1">氏名</th>
-       <td class="table__col2"><%= "@current.name" %></td>
+       <td class="table__col2"><%= @customer.last_name %><%= @customer.first_name %></td>
       </tr>
       <tr>
         <th class="table__col1">カナ</th>
-        <td class="table__col2"><%= "@customer.name_kana" %></td>
+        <td class="table__col2"><%= @customer.last_name_kana %><%= @customer.first_name_kana %></td>
       </tr>
       <tr>
         <th class="table__col1">郵便番号</th>
-        <td class="table__col2"><%= "@customer.post_code" %></td>
+        <td class="table__col2"><%= @customer.post_code %></td>
       </tr>
       <tr>
         <th class="table__col1">住所</th>
-        <td class="table__col2"><%= "@customer.address" %></td>
+        <td class="table__col2"><%= @customer.address %></td>
       </tr>
       <tr>
         <th class="table__col1">電話番号</th>
-        <td class="table__col2"><%= "@customer.telephon_number" %></td>
+        <td class="table__col2"><%= @customer.telephon_number %></td>
       </tr>
       <tr>
         <th class="table__col1">メールアドレス</th>
-        <td class="table__col2"><%= "@customer.email" %></td>
+        <td class="table__col2"><%= @customer.email %></td>
       </tr>
       <th colspan="3"></th>
      </tr>

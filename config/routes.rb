@@ -11,11 +11,16 @@ root 'homes#top'
 
 namespace :public do #namespace :customersをpublicに変更しました。
 
+
   resource :customers, only: [:show, :update, :edit, :unsubscribe, :withdraw]
   resources :address, only: [:index, :create, :edit, :update, :destroy]
   resources :products, only: [:index, :show]
   resources :cart_items, only: [:index, :create, :update, :destroy, :all_destroy]
   resources :orders, only: [:new, :confirm, :create, :complate, :index, :show]
+
+  get 'customers/unsubscribe' => 'customers#unsubscribe'
+  patch 'customers/withdraw' => 'customers#withdraw'
+
 end
 
 
@@ -25,6 +30,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 }
 
 namespace :admin do
+  root to:"order#top"
   resources :customers, only: [:index, :edit, :create, :update]
   resources :products, only: [:new, :index, :show, :edit, :update, :create]
   get 'top' => 'products#top'
