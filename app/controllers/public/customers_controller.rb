@@ -1,12 +1,12 @@
 class Public::CustomersController < ApplicationController
-   before_action :ensure_correct_customer, only: [:edit, :update]
+  before_action :ensure_correct_customer, only: [:edit, :update]
 
   def index
     @customers = Customer.all
   end
 
   def show
-    @customer = Customer.find_by(id: params[:id])
+    @customer = current_customer
   end
 
   def edit
@@ -27,12 +27,10 @@ class Public::CustomersController < ApplicationController
   end
 
   def unsubscribe
-    @customer = Customer.find_by(name: params[:name])
   end
 
   def withdraw
-    @customer = Customer.find_by(name: params[:name])
-    @customer.update(is_valid: false)
+    current_customer.update(is_deleted: true)
     reset_session
     redirect_to root_path
   end

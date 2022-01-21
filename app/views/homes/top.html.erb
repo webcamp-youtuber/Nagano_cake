@@ -9,22 +9,43 @@
 
 
     <div class="col-md-9">
-      <div class="top-cake">
+      <div class="top-cake text-center">
         <div class="top-explanation">
-         <h3>ようこそ、ながのCAKEへ！<br>
+         <p>ようこそ、ながのCAKEへ！<br>
          このサイトは、ケーキ販売のECサイトになります。<br>
          会員でない方も商品の閲覧はできますが、<br>
          購入には会員登録が必要になります。<br>
-         </h3>
+         </p>
         </div>
       </div>
-      <div style="background-color: blue;">
-          <h3>新商品紹介</h3>
-      </div>
+      <br>
     </div>
   </div>
-    <div class="top-link">
-      <h3>全ての商品を見る></h3>
-    </div>
+
+  <br>
+  <div class="row justify-content-center" style="background-color :white;">
+   <h3>新着商品</h3>
+  </div>
+  <br>
+  <div class="row">
+    <% @products. first(6). each do |product| %>
+      <div class="col-md-2">
+        <div class="card text-dark bg-light">
+          <%= attachment_image_tag product, :image, :fill, 100, 100 %>
+        <div class="card-title">
+          <%= link_to product.name, admin_products_path, class:"name" %>
+        </div>
+          <span><%= product.selling_price*1.1 .floor %>円(税込)</span>
+      
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+
+
+
+      <h3><%= link_to "全ての商品を見る>", admin_products_path, class:"list" %></h3>
+
 </div>
 </div>
