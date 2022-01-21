@@ -1,7 +1,9 @@
 <div class='container'>
+  <div class='row'>
+  <%= link_to '新規登録', new_admin_product_path , class: 'btn btn-primary' %>
   <h2>商品一覧</h2>
-  <table class='table'>
-    <thead>
+  <table class='table table-hover'>
+    <thead class='thead-default'>
       <tr>
         <th>商品ID</th>
         <th>商品名</th>
@@ -13,19 +15,14 @@
     <tbody>
       <% @products.each do |product| %>
         <tr>
-          <td></td>
+          <td><%= product.id %></td>
           <td><%= link_to product.name, admin_product_path(product), class: "product_#{product.id}" %></td>
           <td><%= product.selling_price %></td>
           <td><%= product.genre.name %></td>
-          <td>
-            <% if product.is_selling == 0 %>
-            <i class="far fa-circle"></i>
-						<% elsif product.is_selling == 1 %>
-						<i class="far fa-circle"></i>
-						<% end %>
-					</td>
+          <td><%= product.is_selling_i18n %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
+  </div>
 </div>
