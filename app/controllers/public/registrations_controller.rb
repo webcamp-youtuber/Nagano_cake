@@ -1,30 +1,67 @@
-class Public::RegistrationsController < ApplicationController
+# frozen_string_literal: true
 
-  def new
-    @customers = Customer.new
+class Public::RegistrationsController < Devise::RegistrationsController
+    before_action :configure_sign_up_params, only: [:create]
+    #before_action :configure_account_update_params, only: [:update]
+
+  # GET /resource/sign_up
+  # def new
+  #   super
+  # end
+
+  # POST /resource
+  # def create
+  #   super
+  # end
+
+  # GET /resource/edit
+  # def edit
+  #   super
+  # end
+
+  # PUT /resource
+  # def update
+  #   super
+  # end
+
+  # DELETE /resource
+  # def destroy
+  #   super
+  # end
+
+  # GET /resource/cancel
+  # Forces the session data which is usually expired after sign
+  # in to be expired now. This is useful if the user wants to
+  # cancel oauth signing in/up in the middle of the process,
+  # removing all OAuth session data.
+  # def cancel
+  #   super
+  # end
+
+  protected
+
+  # If you have extra params to permit, append them to the sanitizer.
+  def configure_sign_up_params
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:last_name, :first_name, :last_name_kana, :first_name_kana, :email, :post_code, :address, :telephon_number ])
   end
 
-  def create
-    @customer = Customer.new(
-      last_name: params[:last_name],
-      first_name: params[:first_name],
-      last_name_kana: params[:last_name_kana],
-      first_name_kana: params[:first_name_kana],
-      email: params[:email],
-      post_code: params[:post_code],
-      address: params[:address],
-      telephon_number: params[:telephon_number],
-      image_name: "default_user.jpg",
-      password: params[:encrypted_password]
-    )
-    if @customer.save
-      session[:customer_id] = @customer.id
-      flash[:notice] = "会員登録が完了しました"
-      redirect_to("/customers/#{@customer.id}")
-    else
-      render("customers/new")
-    end
+  def after_update_path_for(resource)
+    # 自分で設定した「マイページ」へのパス
+    public_customers_path(current_user)
   end
 
+  # If you have extra params to permit, append them to the sanitizer.
+  # def configure_account_update_params
+  #   devise_parameter_sanitizer.permit(:account_update, keys: [:attribute])
+  # end
 
+  # The path used after sign up.
+  def after_sign_up_path_for(resource)
+    public_customers_path
+  end
+
+  # The path used after sign up for inactive accounts.
+  # def after_inactive_sign_up_path_for(resource)
+  #   super(resource)
+  # end
 end
