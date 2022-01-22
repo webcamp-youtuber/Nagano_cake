@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
       <h3>ショッピングカート</h3>
-        <%= link_to  current_customet_cart_items_path, method: :delete do %>
+        <%= link_to destroy_all_public_cart_items_path, method: :delete do %>
           <button type="button" class="btn btn-danger">カートを空にする</button>
         <% end %>
   </div>
