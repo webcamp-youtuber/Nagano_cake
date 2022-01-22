@@ -1,9 +1,7 @@
 <div class="container">
   <div class="row">
       <h3>ショッピングカート</h3>
-        <%= link_to  current_customet_cart_items_path, method: :delete do %>
-          <button type="button" class="btn btn-danger">カートを空にする</button>
-        <% end %>
+        <%= link_to "カートを空にする", destroy_all_public_cart_item_path, method: :delete, class: "btn btn-danger d-inline ml-auto", "data-confirm" => "カート内の商品を削除してもよろしいですか？"  %>
   </div>
 </div>
 
