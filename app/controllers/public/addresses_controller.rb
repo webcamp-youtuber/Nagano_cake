@@ -1,9 +1,5 @@
 class Public::AddressesController < ApplicationController
 
-  def new
-    @adress = Adress.new
-  end
-
   def index
     @addresses = Address.all
     @address = Address.new
@@ -14,12 +10,11 @@ class Public::AddressesController < ApplicationController
   end
 
   def create
-    @adress = Adress.new(adress_params)
-    if @adress.save
-      # redirect_to adresses_url(id: current_user.id)
-      redirect_to public_address_index_path
+    @address = Address.new(address_params)
+    if @address.save
+      redirect_to public_addresses_index_path
     else
-      render 'new'
+      render 'index'
     end
   end
 
@@ -34,8 +29,8 @@ class Public::AddressesController < ApplicationController
   end
 
   private
-  def adress_params
-    params.require(:adress).permit(:customer_id, :post_code, :address, :destination)
+  def address_params
+    params.require(:address).permit(:customer_id, :post_code, :address, :destination)
   end
 
 end
