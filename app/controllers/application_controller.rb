@@ -2,29 +2,20 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
 
-  def login?
-    if current_customer.nil?
-      redirect_to login_path, alert: "you have to login"
-    end
+ protected
+
+  #ログイン後の遷移設定
+  def after_sign_in_path_for(resource)
+       public_customers_path
   end
 
-  def already_login?
-    unless current_customer.nil?
-      redirect_to customer_path, notice: "you are already login"
-    end
+#ログアウト後の遷移設定
+  def after_sign_out_path_for(resource)
+      root_path
   end
-
-  def current_customer
-    if session[:customer_id]
-      current_customer ||= Customer.find(session[:customer_id])
-    end
-  end
-
-
-  protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:id, :name, :email, :encrypted_password, :encrypted_password_confirmation])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:last_name, :first_name, :last_name_kana, :first_name_kana, :email, :post_code, :address, :telephon_numbe, :encrypted_password, :encrypted_password_confirmation])
   end
 
 
