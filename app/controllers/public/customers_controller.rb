@@ -11,11 +11,11 @@ class Public::CustomersController < ApplicationController
   end
 
   def edit
-    @customer = Customer.find_by(params[:id])
+    @customer = current_customer
   end
 
   def update
-    @customer = Customer.find_by(params[:id])
+    @customer = current_customer
     if @customer.update(customer_params)
       flash[:notice] = "You have updated user successfully."
       redirect_to public_customers_path
