@@ -4,3 +4,10 @@
         is_selling:
           on_sale: 販売中
           no_sale: 販売停止中
+
+    views:
+      pagination:
+        first: "≪FIRST"
+        previous: "<BACK"
+        next: "NEXT>"
+        last: "LAST≫"
