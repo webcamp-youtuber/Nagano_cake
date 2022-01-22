@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <%= render'public/addresses/new', customer: current_customer %>
+    </div>
+
+    <div class="col-md-8 offset-md-1">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>郵便番号</th>
+            <th>住所</th>
+            <th>宛名</th>
+            <th></th>
+          </tr>
+      　</thead>
+      　<tbody>
+          <% @address.each do |address| %>
+            <tr>
+              <td><%= address.post_code %></td>
+              <td><%= address.address %></td>
+              <td><%= address.destination %></td>
+              <td><%= link_to "Edit", edit_public_address, class: "btn btn-large btn-primary" %></td>
+              <td><%= link_to "Destroy", public_address_index, method: :delete, "data-confirm" => "Are you sure？" %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+</div>
+
