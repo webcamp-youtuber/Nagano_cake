@@ -40,8 +40,8 @@
               <td><%= address.post_code %></td>
               <td><%= address.address %></td>
               <td><%= address.destination %></td>
-              <td><%= link_to "Edit", edit_public_addresses, class: "btn btn-large btn-primary" %></td>
-              <td><%= link_to "Destroy", public_addresses_index, method: :delete, "data-confirm" => "Are you sure？" %></td>
+              <td><%= link_to "Edit", edit_public_address_path(address),  class: "btn btn-large btn-primary" %></td>
+              <td><%= link_to "Destroy", public_address_path(address), method: :delete, "data-confirm" => "Are you sure？" %></td>
             </tr>
           <% end %>
         </tbody>
