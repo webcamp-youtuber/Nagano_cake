@@ -17,12 +17,13 @@
       <% @products.each do |product| %>
       <div class="card">
         <div class="card-body">
-          <%= link_to(admin_products_path) do %><%= attachment_image_tag product, :image, size: '300x200', format: 'jpeg' %><% end %>
+          <%= link_to(admin_products_path) do %><%= attachment_image_tag product, :image, size: '300x200', format: 'jpeg' %>
           <h3 class="card-title text-center"><%= product.name %></h3>
             <p class="card-text text-center"><%= product.add_tax_price.to_s(:delimited, delimiter: ',') %>円</p>
-      　　<% end %
+      　　<% end %>
       　</div>
       </div>
+      <% end %>
     </div>
   </div>
  </div>
