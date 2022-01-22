@@ -7,8 +7,8 @@
 </div>
 <div class="container">
   <div class="row">
-    <%= form_with model: @customer, url: new_customer_registration_path, local: true do |f| %>
-
+    <%= form_with model: @customer, url: customer_registration_path, local: true do |f| %>
+      <%= render "public/shared/error_messages", resource: resource %>
         <br><%= f.label :氏 %><%= f.text_field :last_name %>
         <%= f.label :名 %><%= f.text_field :first_name %></br>
 
@@ -22,26 +22,26 @@
         <br><%= f.label :住所 %><%= f.text_field :address %></br>
 
 
-        <br><%= f.label :電話番号ハイフンなし %><%= f.text_field :telephone_number %></br>
+        <br><%= f.label :電話番号ハイフンなし %><%= f.text_field :telephon_number %></br>
 
         <br><%= f.label :パスワード %>
-         <%= f.password_field :encrypted_password %>
+         <%= f.password_field :password %>
         <% if @minimum_encrypted_password_length %>
           (<%= @minimum_encrypted_password_length %>6文字以上)
         <% end %></br>
 
         <br><%= f.label :確認用パスワード %>
-         <%= f.password_field :encrypted_password_confirmation %>
+         <%= f.password_field :password_confirmation %>
         <% if @minimum_encrypted_password_length %>
           (<%= @minimum_encrypted_password_length %>6文字以上)
         <% end %></br>
 
       <div class="grid-6">
-        <%= link_to "新規登録", public_customers_path, class: "btn btn-primary" %>
+          <%= f.submit "新規登録" ,class: 'btn btn-primary' %>
       </div>
 
       <p>既に登録済みの方</p>
-      <p><%= link_to "こちら", new_customer_session_path %></p>
+      <p><%= render "public/shared/links" %></p>
       <p>からログインしてください。</p>
     <% end %>
   </div>

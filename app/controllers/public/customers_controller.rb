@@ -1,5 +1,6 @@
 class Public::CustomersController < ApplicationController
-  before_action :ensure_correct_customer, only: [:edit, :update]
+  before_action :authenticate_customer!, except: [:contact]
+
 
   def index
     @customers = Customer.all
@@ -10,17 +11,14 @@ class Public::CustomersController < ApplicationController
   end
 
   def edit
-    @customer = Customer.find_by(id: params[:id])
-    if @customer != current_customer
-      redirect_to customer_path
-    end
+    @customer = Customer.find_by(params[:id])
   end
 
   def update
-    @customer = Customer.find(params[:id])
+    @customer = Customer.find_by(params[:id])
     if @customer.update(customer_params)
       flash[:notice] = "You have updated user successfully."
-      redirect_to customer_path(@customer)
+      redirect_to public_customers_path
     else
       render 'edit'
     end
@@ -37,7 +35,7 @@ class Public::CustomersController < ApplicationController
 
   private
   def customer_params
-    params.require(:customer).permit(:name, :name_kana, :post_code, :address, :telephon_number, :email)
+    params.require(:customer).permit(:name, :name_kana, :last_name, :first_name, :last_name_kana, :first_name_kana, :post_code, :address, :telephon_number, :email)
   end
 
   def ensure_correct_customer
