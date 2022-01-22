@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
 # 顧客用
-devise_for :customers,skip: [:passwords], controllers: {
+devise_for :customers,skip: [:passwords,], controllers: {
   registrations: "public/registrations",
   sessions: 'public/sessions'
 }
@@ -13,7 +13,7 @@ namespace :public do #namespace :customersをpublicに変更しました。
 
 
   resource :customers, only: [:show, :update, :edit, :unsubscribe, :withdraw]
-  resources :address, only: [:index, :create, :edit, :update, :destroy]
+  resources :addresses, only: [:index, :create, :edit, :update, :destroy]
   resources :products, only: [:index, :show]
   resources :cart_items, only: [:index, :create, :update, :destroy] do
     collection do
