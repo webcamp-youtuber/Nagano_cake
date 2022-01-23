@@ -2,9 +2,17 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+//index
 .red {
 	color:#e54747;
 }
 .blue {
 	color:#528fff;
+}
+
+//show
+table th,
+table td{
+font-size: 15px;
+
 }

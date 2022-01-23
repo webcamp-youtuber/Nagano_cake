@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="row">
+  <div class="row justify-content-center">
     <div class="col-md-4">
       <div class="order-detail text-center">
         <h4><%= @customer.first_name %>さんの会員詳細</h4>
@@ -7,8 +7,9 @@
     </div>
   </div>
   
-  <div class="row">
-      <table>
+  <div class="row justify-content-center">
+   <div class="col-md-8">
+      <table class="table">
        <tr>
         <th>会員ID</th><td><%= @customer.id %></td>
        </tr>
@@ -44,7 +45,7 @@
     </div>
   </div>
 
-  <div class="row">
+  <div class="row justify-content-center">
     <div>
      <%= link_to "編集する", edit_admin_customer_path(@customer) , class: "btn btn-sm btn-success" %>
      <%= "注文一覧を見る" %>
