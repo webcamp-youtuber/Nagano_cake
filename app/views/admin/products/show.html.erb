@@ -8,6 +8,7 @@
     </div>
   </div>
 </div>
+
 <div class='container'>
   <div class='row'>
     <div class='col-md-4'>
@@ -24,7 +25,7 @@
             <td><%= @product.name %></td>
           </tr>
           <tr>
-            <th>商品一覧</th>
+            <th>商品説明</th>
             <td><%= @product.explanation %></td>
           </tr>
           <tr>
@@ -37,7 +38,13 @@
           </tr>
           <tr>
             <th>販売ステータス</th>
-            <td><%= @product.is_selling_i18n %></td>
+            <td>
+              <% if @product.is_selling == "on_sale" %>
+                <span class='text-success'><%= @product.is_selling_i18n %></span>
+              <% else %>
+                <span class='text-secondary'><%= @product.is_selling_i18n %></span>
+              <% end %>
+            </td>
           </tr>
         </tbody>
       </table>
