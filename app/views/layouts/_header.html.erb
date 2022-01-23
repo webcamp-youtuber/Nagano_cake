@@ -1,6 +1,7 @@
 <header class='top-page-header'>
 
     <div class="header-top-content">
+      <!--管理者と顧客で表示変更-->
       <% if admin_signed_in? %>
         <%= link_to admin_root_path, class: 'header-title' do %>
           <div>Nagano-Cake</div>
@@ -37,12 +38,6 @@
         <% end %>
         </ul>
       </div>
-
-    </div>
-
-    <div class='header-center'>
-      <div class='header-center-top'>大切な人への贈り物に</div>
-      <div class='header-center-bottom'>Nagano-Cake</div>
     </div>
 
 </header>
