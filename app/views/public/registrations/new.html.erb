@@ -7,42 +7,63 @@
 </div>
 <div class="container">
   <div class="row">
-    <%= form_with model: @customer, url: customer_registration_path, local: true do |f| %>
-      <%= render "public/shared/error_messages", resource: resource %>
-        <br><%= f.label :氏 %><%= f.text_field :last_name %>
-        <%= f.label :名 %><%= f.text_field :first_name %></br>
-
-        <br><%= f.label :セイ %><%= f.text_field :last_name_kana %>
-        <%= f.label :メイ %><%= f.text_field :first_name_kana %></br>
-
-        <br><%= f.label :メールアドレス %><%= f.email_field :email %></br>
-
-        <br><%= f.label :郵便番号 %><%= f.text_field :post_code %></br>
-
-        <br><%= f.label :住所 %><%= f.text_field :address %></br>
+    <div class='col-sm-8 offset-sm-2'>
+      <%= form_with model: @customer, url: customer_registration_path, local: true do |f| %>
+        <%= render "public/shared/error_messages", resource: resource %>
+        <div class='form-group'>
+          <%= f.label '名前', class: 'col-sm-4' %>
+          <%= f.label '氏' %><%= f.text_field :last_name %>
+          <%= f.label '名' %><%= f.text_field :first_name %>
+        </div>
 
 
-        <br><%= f.label :電話番号ハイフンなし %><%= f.text_field :telephon_number %></br>
+        <div class='form-group'>
+          <%= f.label 'フリガナ', class: 'col-sm-4' %>
+          <%= f.label 'セイ' %><%= f.text_field :last_name_kana %>
+          <%= f.label 'メイ' %><%= f.text_field :first_name_kana %>
+        </div>
 
-        <br><%= f.label :パスワード %>
-         <%= f.password_field :password %>
-        <% if @minimum_encrypted_password_length %>
-          (<%= @minimum_encrypted_password_length %>6文字以上)
-        <% end %></br>
+        <div class='form-group'>
+          <%= f.label 'メールアドレス', class: 'col-sm-4' %><%= f.email_field :email, class: 'col-sm-8' %>
+        </div>
 
-        <br><%= f.label :確認用パスワード %>
-         <%= f.password_field :password_confirmation %>
-        <% if @minimum_encrypted_password_length %>
-          (<%= @minimum_encrypted_password_length %>6文字以上)
-        <% end %></br>
+        <div class='form-group'>
+          <%= f.label '郵便番号', class: 'col-sm-4' %><%= f.text_field :post_code %>
+        </div>
 
-      <div class="grid-6">
-          <%= f.submit "新規登録" ,class: 'btn btn-primary' %>
-      </div>
+        <div class='form-group'>
+          <%= f.label '住所', class: 'col-sm-4' %><%= f.text_field :address, class: 'col-sm-8' %>
+        </div>
 
-      <p>既に登録済みの方</p>
-      <p><%= render "public/shared/links" %></p>
-      <p>からログインしてください。</p>
-    <% end %>
+
+        <div class='form-group'>
+          <%= f.label '電話番号ハイフンなし', class: 'col-sm-4' %><%= f.text_field :telephon_number %>
+        </div>
+
+        <div class='form-group'>
+          <%= f.label 'パスワード', class: 'col-sm-4' %>
+           <%= f.password_field :password %>
+          <% if @minimum_encrypted_password_length %>
+            (<%= @minimum_encrypted_password_length %>6文字以上)
+          <% end %>
+        </div>
+
+        <div class='form-group'>
+          <%= f.label '確認用パスワード', class: 'col-sm-4' %>
+           <%= f.password_field :password_confirmation %>
+          <% if @minimum_encrypted_password_length %>
+            (<%= @minimum_encrypted_password_length %>6文字以上)
+          <% end %>
+        </div>
+
+        <div class='text-center'>
+            <%= f.submit "新規登録" ,class: 'btn btn-primary' %>
+
+          <p>既に登録済みの方</p>
+          <p><%= render "public/shared/links" %></p>
+          <p>からログインしてください。</p>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
