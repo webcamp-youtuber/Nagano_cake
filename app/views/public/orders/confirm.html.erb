@@ -1,0 +1,87 @@
+<% provide(:title, "注文情報確認") %>
+<div class="container">
+<h2 class="text-center">注文情報確認</h2>
+<div calss="row">
+  <div>
+    <% if current_customer.cart_items.present? %>
+      <table>
+        <thead>
+          <tr class="info">
+            <th>商品名</th>
+            <th>単価(税込)</th>
+            <th>数量</th>
+            <th>小計</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @cart_items.each do |cart_item| %>
+            <tr>
+              <td class="text-left">
+                <%= attachment_image_tag(cart_item.product, :image, size: "50x50", fallback: "no_image.jpg") %>
+                <%= cart_item.product.name %>
+              </td>
+              <td class="text-right">
+                ¥<%= cart_item.product.add_tax_price %>
+              </td>
+              <td class="text-right">
+                  <%= cart_item.quantity %>
+              </td>
+              <td class="text-right">
+                ¥<%= cart_item.subtotal %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <table class="table">
+          <tr>
+            <th class="info">送料</th>
+            <td class="text-right">¥<%= @order.postage %></td>
+          </tr>
+          <tr>
+            <th class="info">商品合計</th>
+            <td class="tex-rigth">¥<%= @total_price %></td>
+          </tr>
+          <tr>
+            <th class="info">請求金額</th>
+            <td class="text-right">¥<%= @order.bill_maney %></td>
+          </tr>
+      </table>
+    </div>
+    <div>
+      <table>
+        <tr>
+          <th  class="info">支払方法</th>
+          <td class="text-left">
+            <%= @order.payment_method %>
+          </td>
+        </tr>
+        <tr>
+          <th  class="info">お届け先</th>
+          <td class="text-left">
+            <%= @order.adress %>
+          </td>
+        </tr>
+      </table>
+
+      <div>
+      <%= form_with model: @order, url: public_orders_path, method: :post, local: true do |f| %>
+        <%= f.hidden_field :post_code %>
+        <%= f.hidden_field :address %>
+        <%= f.hidden_field :name %>
+        <%= f.hidden_field :payment_method %>
+        <%= f.hidden_field :bill_maney %>
+        <%= link_to "注文情報入力へ戻る", new_public_order_path, data: {"turbolinks" => false}, class: "btn btn-info back" %>
+            <i class="fas fa-shipping-fast fa-2x"></i>
+        <%= f.submit "購入を確定する", class: "btn btn-warning center-block" %>
+      <% end %>
+      </div>
+    <% else %>
+
+        <!-- if カートアイテムがない時 -->
+        <p>カートに商品がない為、注文確定ができません。</p>
+        <p><%= link_to "商品一覧", public_products_path %>から商品をお探し下さい。</p>
+    <% end %>
+  </div>
