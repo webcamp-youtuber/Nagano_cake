@@ -20,7 +20,9 @@ namespace :public do #namespace :customersをpublicに変更しました。
       delete '/' => 'cart_items#all_destroy'
     end
   end
-  resources :orders, only: [:new, :confirm, :create, :complate, :index, :show]
+  resources :orders, only: [:new, :create, :complate, :index, :show]
+    post 'orders/confirm' => 'orders#confirm'
+
 
   get 'customers/unsubscribe' => 'customers#unsubscribe'
   patch 'customers/withdraw' => 'customers#withdraw'
