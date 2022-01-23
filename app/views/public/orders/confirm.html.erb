@@ -69,8 +69,8 @@
       <div>
       <%= form_with model: @order, url: public_orders_path, method: :post, local: true do |f| %>
         <%= f.hidden_field :post_code %>
-        <%= f.hidden_field :address %>
-        <%= f.hidden_field :name %>
+        <%= f.hidden_field :adress %>
+        <%= f.hidden_field :destination %>
         <%= f.hidden_field :payment_method %>
         <%= f.hidden_field :bill_maney %>
         <%= link_to "注文情報入力へ戻る", new_public_order_path, data: {"turbolinks" => false}, class: "btn btn-info back" %>

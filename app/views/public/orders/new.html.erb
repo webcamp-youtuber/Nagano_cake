@@ -31,10 +31,10 @@
               <%= f.label :address_number_3, "新しいお届け先" %>
               <%= f.label :post_code, "郵便番号" %>
               <%= f.text_field :post_code %>
-              <%= f.label :address, "住所" %>
-              <%= f.text_field :address %>
-              <%= f.label :name, "名前" %>
-              <%= f.text_field :name %>
+              <%= f.label :adress, "住所" %>
+              <%= f.text_field :adress %>
+              <%= f.label :destination, "名前" %>
+              <%= f.text_field :destination %>
             </br>
             <%= link_to public_cart_items_path, class: "glyphicon glyphicon-shopping-cart btn btn-info cart-back" do %>
               カート(<%= current_customer.cart_items.count %>)へ戻る
