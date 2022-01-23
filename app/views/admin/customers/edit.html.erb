@@ -2,18 +2,34 @@
   <div class="row">
     <div class="col-md-5">
       <div class="order-detail text-center">
-        <h3>〇〇さんの会員情報編集</h3>
+        <h3><%= @customer.first_name %>さんの会員詳細</h3>
       </div>
       <div>
+      <%= form_with(model: @customer, url:admin_customer_path, local: true ,method: :patch) do |f| %>
         <h3>会員ID</h3>
+         <%= @customer.id %>
         <h3>氏名</h3>
+         <%= @customer.first_name %><%= @customer.last_name %>
         <h3>フリガナ</h3>
+         <%= @customer.first_name_kana %><%= @customer.last_name_kana %>
         <h3>郵便番号</h3>
+         <%= @customer.post_code%>
         <h3>住所</h3>
+         <%= @customer.address%>
         <h3>電話番号</h3>
+         <%= @customer.telephon_number%>
         <h3>メールアドレス</h3>
+         <%= @email%>
         <h3>会員ステータス</h3>
-
+         <% if @customer.is_deleted == false %>
+          <font color="#528fff">有効</font>
+         <% else %>
+          <font color="red">退会済</font>
+         <% end %>
+        <div class="actions">
+         <%= f.submit "変更を保存" %>
+        </div>
+      <% end %>
       </div>
     </div>
   </div>
