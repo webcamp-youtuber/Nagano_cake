@@ -1,8 +1,8 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-3 ml-3">
-        <h4>ジャンル検索</h4>
-          <p class="border"> ジャンル名</p>　<!-- ジャンル名は後ほど入力 -->
+      <h4>ジャンル検索</h4>
+      <p class="border"> ジャンル名</p>　<!-- ジャンル名は後ほど入力 -->
     </div>
   </div>
 </div>
@@ -21,25 +21,21 @@
       <div>
         <p class="h3 pt-5">￥<%= @product.add_tax_price.to_s(:delimited) %><span style="font-size:12px"> (税込) </span></p>
         <% if customer_signed_in? %>
-        <% if @product.sold_out? %>
-        <%= form_with model: @cart_items, url:public_cart_items_path, local:true do |f| %>
-        <div class="input-group pt-5">
-          <%= f.hidden_field :product_id, value: @product.id %>
-          <%= f.select :quantity, options_for_select((1..10).to_a), {include_blank: "個数選択"}, {class: "form-control rounded"} %>
-          <%= f.submit "カートに入れる", class: "ml-2 btn-outline-success" %>
-        </div>
-
-        <% end %>
-        <% else %>
-        <div class="btn btn-outline-danger">売り切れ</div>
+          <% if @product.is_selling == "on_sale" %>
+          <%= form_with model: @cart_items, url:public_cart_items_path, local:true do |f| %>
+          <div class="input-group pt-5">
+            <%= f.hidden_field :product_id, value: @product.id %>
+            <%= f.select :quantity, options_for_select((1..10).to_a), {include_blank: "個数選択"}, {class: "form-control rounded"} %>
+            <%= f.submit "カートに入れる", class: "ml-2 btn-outline-success" %>
+          </div>
+          <% end %>
+          <% else %>
+          <div class="btn btn-outline-danger">売り切れ</div>
           <% end %>
           <% else %>
           <p><%= link_to "会員登録", new_customer_registration_path %>をお願い致します。</p>
-          <% end %>
-        </div>
-
+        <% end %>
       </div>
-
     </div>
   </div>
 </div>
