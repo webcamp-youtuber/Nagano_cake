@@ -1,25 +1,90 @@
-def create
-    @order = Order.new(order_params)
-    @order.customer_id = current_customer.id
-    @order.save
+<div class=container>
+  <div class='row'>
+    <div class='mx-3'>
+      <h2>注文履歴詳細</h2>
+    </div>
+  </div>
+</div>
 
+<div class='container'>
+  <div class='row'>
+    <div class='col-md-3'>
+      <table class='table table-hover'>
+        <thead>
+          <tr>注文情報</tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>注文日</th>
+            <td><%= @order.day %></td>
+          </tr>
+          <tr>
+            <th>配送先</th>
+            <td><%= @order.adress %></td>
+          </tr>
+          <tr>
+            <th>支払方法</th>
+            <td><%= @order.payment_method %></td>
+          </tr>
+          <tr>
+            <th>ステータス</th>
+            <td><%= @order.add_tax_price.to_s(:delimited) %>円(<%= @product.selling_price %>円)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 
-    flash[:notice] = "ご注文が確定しました。"
-    redirect_to #public_orders_complate_path
+<div class='container'>
+  <div class='row'>
+    <div class='col-md-8'>
+      <table class='table table-hover'>
+        <thead>
+          <tr>請求情報</tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>商品合計</th>
+            <td><%= @total_price %></td>
+          </tr>
+          <tr>
+            <th>配送料</th>
+            <td><%= @order.postage %></td>
+          </tr>
+          <tr>
+            <th>ご請求額</th>
+            <td><%= @order.bill_maney %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 
-    if params[:order][:address_number] == "2"
-      current_customer.shipping_address.create(address_params)
-    end
-
-    @cart_items = current_customer.cart_items.all
-    @cart_items.each do |cart_item|
-    OrderItem.create(
-      product_id: cart_item.product.id,
-      order_id: @order.id,
-      amount: cart_item.amount,
-      price: cart_item.product.add_tax_price
-    )
-    end
-    # 注文完了時
-    @cart_items.destroy_all
-  end
+  <div class='container'>
+  <div class='row'>
+    <div class='col-md-12'>
+      <table class='table table-hover'>
+        <thead>
+          <tr>注文内容</tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>商品</th>
+            <td><%= @product.name %></td>
+          </tr>
+          <tr>
+            <th>単価（税込）</th>
+            <td><%= cart_item.product.add_tax_price %></td>
+          </tr>
+          <tr>
+            <th>個数</th>
+            <td><%= cart_item.quantity %></td>
+          </tr>
+          <tr>
+            <th>小計</th>
+            <td><%= cart_item.subtotal %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
