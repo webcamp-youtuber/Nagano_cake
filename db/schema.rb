@@ -89,7 +89,7 @@ ActiveRecord::Schema.define(version: 2022_01_24_071845) do
     t.string "adress"
     t.string "post_code"
     t.string "destination"
-    
+    t.integer "order_status", default: 0
   end
 
   create_table "products", force: :cascade do |t|
