@@ -91,8 +91,5 @@ def address_params
   params.require(:adress).permit(:name, :address, :post_code)
 end
 
-<<<<<<< HEAD
 end
-=======
-end
->>>>>>> origin/develop
+
