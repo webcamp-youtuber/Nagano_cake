@@ -4,15 +4,38 @@
       <div class="order-detail text-center">
         <h3>注文履歴詳細</h3>
       </div>
-      <div>
-        <h3>購入者</h3>
-        <h3>注文日</h3>
-        <h3>配送先</h3>
-        <h3>支払方法</h3>
-        <h3>注文ステータス</h3>
-      </div>
     </div>
   </div>
+  <div class="row">
+    <div class="col-md-9">
+      <table =class"table" style=”border:none;” >
+        <tr>
+          <th>購入者</th>
+          <td><%= order.first_name(order.customer) %><%= order.last_name(order.customer) %></td>
+        </tr>
+        <tr>
+          <th>注文日</th>
+          <td><%= order.create_at %></td>
+        </tr>
+        <tr>
+          <th>配送先</th>
+          <td><%= order.adress %></td>
+        </tr>
+        <tr>
+          <th>支払方法</th>
+          <td><%= order.payment_method %></td>
+        </tr>
+        <tr>
+          <th>注文ステータス</th>
+          <td><%= order.order_status %>
+
+          </td>
+          <td><%= f.submit '更新' ,class: "btn btn-primary" %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
 
   <div class="row">
     <table class="table col-md-9">
@@ -27,13 +50,16 @@
         </tr>
       </thead>
       <tbody>
+        <% @order_details each do |order_details| %>
         <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
+          <td><%= order_details.product.name %></td>
+          <td><%= tax_price(order_detail.product.tax_out_price).to_s(:delimited) %></td>
+          <td><%= order_detail.quantity %></td>
+          <td>¥<%= paymant(order_detail).to_s(:delimited) %></td>
+          <td>
+
+          </td>
+          <td><%= f.submit '更新' ,class: "btn btn-primary" %</td>
         </tr>
       </tbody>
     </table>
@@ -43,4 +69,21 @@
       <h3>請求金額合計</h3>
     </div>
   </div>
+  <div class="col-md-9">
+      <table =class"table" style=”border:none;” >
+        <tr>
+          <th>商品合計</th>
+          <td></td>
+        </tr>
+        <tr>
+          <th>送料</th>
+          <td></td>
+        </tr>
+        <tr>
+          <th>請求金額合計</th>
+          <td></td>
+        </tr>
+      </table>
+  </div>
+
 </div>
