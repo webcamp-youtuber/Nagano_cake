@@ -13,6 +13,7 @@ class Public::OrdersController < ApplicationController
     @cart_items = current_customer.cart_items.all
     @order = Order.new(order_params)
     @order.postage = 800
+    @order.payment_method = params[:order][:payment_method]
     @current_customer_order = current_customer
     if params[:order][:address_number] == "1"
       @order.post_code = current_customer.post_code
