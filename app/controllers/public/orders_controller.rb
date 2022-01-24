@@ -52,13 +52,14 @@ class Public::OrdersController < ApplicationController
 
   def create
     @order = current_customer.orders.new(order_params)
+    @order.postage = 800
     if @order.save
      # カート商品の情報を注文商品に移動
     @cart_items = current_customer.cart_items
     @cart_items.each do |cart_item|
     @order_details = OrderDetail.new
      @order_details.product_id = cart_item.product_id
-     @order_details.payment_id = @order.id
+     @order_details.order_id = @order.id
      @order_details.quantity = cart_item.quantity
      @order_details.payment = cart_item.product.selling_price*cart_item.quantity
      @order_details.production_status = 0
@@ -84,11 +85,11 @@ class Public::OrdersController < ApplicationController
 private
 
 def order_params
-  params.permit(:customer_id, :bill_maney, :postage, :payment_method, :adress, :post_code, :destination, :order_status)
+  params.require(:order).permit(:customer_id, :bill_maney, :postage, :payment_method, :adress, :post_code, :destination, :order_status)
 end
 
 def address_params
-  params.permit(:name, :address, :post_code)
+  params.require(:adress).permit(:name, :address, :post_code)
 end
 
 end
