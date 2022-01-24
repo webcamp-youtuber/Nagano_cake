@@ -4,15 +4,6 @@
         is_selling:
           on_sale: 販売中
           no_sale: 販売停止中
-
-    views:
-      pagination:
-        first: "≪FIRST"
-        previous: "<BACK"
-        next: "NEXT>"
-        last: "LAST≫"
-
-    enums:
       order:
         order_status:
           waiting_deposit: 入金待ち
@@ -20,12 +11,18 @@
           production: 製作中
           preparing_delivery: 発送準備中
           sent: 発送済み
-
-    enums:
       order_detail:
         production_status:
           not_startable: 着手不可
           waiting_production: 制作待ち
           produced: 製作中
           production_completed: 制作完了
+
+
+    views:
+      pagination:
+        first: "≪FIRST"
+        previous: "<BACK"
+        next: "NEXT>"
+        last: "LAST≫"
 
