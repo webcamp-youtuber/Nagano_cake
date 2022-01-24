@@ -32,15 +32,19 @@
       <div class="col-md-2">
         <div class="card text-dark bg-light">
           <%= attachment_image_tag product, :image, :fill, 100, 100 %>
-        <div class="card-title">
-          <%= link_to product.name, admin_products_path, class:"name" %>
-        </div>
+          <div class="card-title">
+            <%= link_to product.name, public_product_path(product), class:"name" %>
+          </div>
           <span><%= product.selling_price*1.1 .floor %>円(税込)</span>
         </div>
       </div>
     <% end %>
   </div>
+  <% if admin_signed_in? %>
 　　<h3><%= link_to "全ての商品を見る>", admin_products_path, class:"list" %></h3>
+　<% else %>
+　  <h3><%= link_to "全ての商品を見る>", public_products_path, class:"list" %></h3>
+　<% end %>
 
 </div>
 </div>
