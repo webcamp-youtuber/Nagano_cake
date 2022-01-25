@@ -4,7 +4,6 @@ class Public::OrdersController < ApplicationController
 
   def new
   	@order = Order.new
-  	@shipping_addresses = Address.where(customer: current_customer)
   end
 
 
@@ -12,14 +11,12 @@ class Public::OrdersController < ApplicationController
   def confirm
     @cart_items = current_customer.cart_items.all
     @order = Order.new(order_params)
-    @order.postage = 800
     @order.payment_method = params[:order][:payment_method]
-    @current_customer_order = current_customer
+    @order.postage = 800
     if params[:order][:address_number] == "1"
       @order.post_code = current_customer.post_code
       @order.adress = current_customer.address
-      @order.destination = current_customer.last_name + current_customer.first_name
-    elsif params[:order][:address_number] == "2"
+      @order.destination = current_customer.last_name + current_customer.first_name    elsif params[:order][:address_number] == "2"
       if Address.exists?(name: params[:order][:registered])
         @order.post_code = Address.find(params[:order][:registered]).post_code
         @order.destination = Address.find(params[:order][:registered]).name
@@ -53,10 +50,10 @@ class Public::OrdersController < ApplicationController
   def create
     @order = current_customer.orders.new(order_params)
     @order.postage = 800
-    if @order.save
+    @order.save
      # カート商品の情報を注文商品に移動
-      @cart_items = current_customer.cart_items
-      @cart_items.each do |cart_item|
+    @cart_items = current_customer.cart_items
+    @cart_items.each do |cart_item|
       @order_details = OrderDetail.new
       @order_details.product_id = cart_item.product_id
       @order_details.order_id = @order.id
@@ -66,9 +63,8 @@ class Public::OrdersController < ApplicationController
       @order_details.save
     end
     # 注文完了後、カート商品を空にする
-      @cart_items.destroy_all
-      redirect_to complate_public_orders_path
-    end
+    @cart_items.destroy_all
+    redirect_to complate_public_orders_path
   end
 
   def complate

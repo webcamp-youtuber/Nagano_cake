@@ -19,7 +19,7 @@
             <tr>
               <td class="text-left">
                 <%= cart_item.product.name %>
-                <%= attachment_image_tag(cart_item.product, :image, size: "25x50", fallback: "no_image.jpg") %>
+                <%= attachment_image_tag(cart_item.product, :image, size: "75x50", fallback: "no_image.jpg") %>
               </td>
               <td class="text-right">
                 ¥<%= cart_item.product.add_tax_price %>
