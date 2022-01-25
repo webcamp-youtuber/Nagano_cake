@@ -19,7 +19,7 @@
             <% @orders.each do |order| %>
               <tr>
                 <td>
-    		          <%= order.created_at.strftime('%Y/%m/%d') %>
+    		          <%= order.created_at.strftime('%Y/%m/%d/%T') %>
     		        </td>
     		        <td class="text-left">
     		          <%= order.post_code %><br>
