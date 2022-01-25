@@ -44,7 +44,8 @@ namespace :admin do
   resources :products, only: [:new, :index, :show, :edit, :update, :create]
   resources :genres, only: [:index, :edit, :create, :update]
   resources :orders, only: [:show, :update]
-  resource :order_details, only: [:update]
+  resources :order_details, only: [:update]
+
 
 end
 
