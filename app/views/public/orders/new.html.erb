@@ -7,45 +7,43 @@
         <table>
           <% if current_customer.cart_items.present? %>
           <%= form_with model:@order, url: confirm_public_orders_path, local: true do |f| %>
-          <h3 class="col-xs-3 sub-head text-left">
-          <i class="fas fa-yen-sign"></i>支払い方法</h3>
-              <br>
-                <%= f.radio_button :payment_method, Order.payment_methods.key(0) %>
-                <%= f.label :payment_method, Order.payment_methods_i18n[:credit_card] %>
-              <br>
-              </br>
-                <%= f.radio_button :payment_method, Order.payment_methods.key(1) %>
-                <%= f.label :payment_method, Order.payment_methods_i18n[:transfer] %>
-              <br>
-              </br>
-            <h3 class="col-xs-3 sub-head text-left"><i class="fas fa-people-carry"></i>お届け先</h3>
-              <br>
-                <%= f.radio_button :address_number, "1" %>
-                <%= f.label :address_number_1, "ご自身の住所" %>
-                <%= "#{current_customer.post_code} #{current_customer.address}" %>
-                <%= "#{current_customer.first_name} #{current_customer.last_name}" %>
-              </br>
-                <%= f.radio_button :address_number, "2" %>
-                <%= f.label :address_number_2, "登録先の住所" %>
-                  <span>登録済住所から選択</span><br>
-                  <%= f.collection_select(:registered, current_customer.addresses.all, :id, :address) %>
-              </br>
-                <%= f.radio_button :address_number, 3 %>
-                <%= f.label :address_number_3, "新しいお届け先" %>
-                <br></br>
-                <%= f.label :post_code, "郵便番号" %>
-                <%= f.text_field :post_code %>
-                <br></br>
-                <%= f.label :adress, "住所" %>
-                <%= f.text_field :adress %>
-                <br></br>
+          <h3 class="col-xs-3 sub-head text-left"><i class="fas fa-yen-sign"></i>支払い方法</h3>
+            <br>
+              <%= f.radio_button :payment_method, Order.payment_methods.key(0) %>
+              <%= f.label :payment_method, Order.payment_methods_i18n[:credit_card] %>
+            <br>
+            </br>
+              <%= f.radio_button :payment_method, Order.payment_methods.key(1) %>
+              <%= f.label :payment_method, Order.payment_methods_i18n[:transfer] %>
+            </br>
+          <h3 class="col-xs-3 sub-head text-left"><i class="fas fa-people-carry"></i>お届け先</h3>
+            <br>
+              <%= f.radio_button :address_number, "1" %>
+              <%= f.label :address_number_1, "ご自身の住所" %>
+              <%= "#{current_customer.post_code} #{current_customer.address}" %>
+              <%= "#{current_customer.first_name} #{current_customer.last_name}" %>
+            </br>
+              <%= f.radio_button :address_number, "2" %>
+              <%= f.label :address_number_2, "登録先の住所" %>
+              <span>登録済住所から選択</span><br>
+              <%= f.collection_select(:registered, current_customer.addresses.all, :id, :address) %>
+            </br>
+              <%= f.radio_button :address_number, 3 %>
+              <%= f.label :address_number_3, "新しいお届け先" %>
+            <br></br>
+              <%= f.label :post_code, "郵便番号" %>
+              <%= f.text_field :post_code %>
+            <br></br>
+              <%= f.label :adress, "住所" %>
+              <%= f.text_field :adress %>
+            <br></br>
                 <%= f.label :destination, "名前" %>
                 <%= f.text_field :destination %>
               <br>
               </br>
               <div class="col-md-6 offset-md-4">
               <%= link_to public_cart_items_path, class: "glyphicon glyphicon-shopping-cart btn btn-info col-xs-1 cart-back" do %>
-              カート(<%= current_customer.cart_items.count %>)へ戻る
+                カート(<%= current_customer.cart_items.count %>)へ戻る
               <% end %>
               <%= f.submit "確認画面へ進む", class: "btn btn-success" %>
               </div>
