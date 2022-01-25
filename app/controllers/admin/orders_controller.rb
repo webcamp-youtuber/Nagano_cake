@@ -10,6 +10,15 @@ class Admin::OrdersController < ApplicationController
     @order = Order.find(params[:id])
 		@order_details = @order.order_details
 		@order.postage = 800
+    #合計金額
+    sum = 0
+    @order_details.each do |order_details|
+      sum += (order_details.quantity * order_details.product.add_tax_price)
+    end
+    @total_price = sum
+    @total_bill_maney = (sum + @order.postage)
+
+
   end
 
   def update

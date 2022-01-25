@@ -10,6 +10,9 @@ enum production_status:{
   production_completed: 3,
 }
 
+def subtotal
+    product.add_tax_price * quantity
+end
 
 end
 
