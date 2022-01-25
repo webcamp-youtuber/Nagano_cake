@@ -21,7 +21,7 @@
           </tr>
           <tr>
             <th class='table-secondary'>配送先</th>
-            <td>〒<%= @order.post_code %><br></br><%= @order.address %></td>
+            <td>〒<%= @order.post_code %><br><%= @order.address %><br><%= @order.destination %></td>
           </tr>
           <tr>
             <th class='table-secondary'>支払方法</th>
@@ -76,9 +76,9 @@
           </tr>
           <tr>
             <td><%= order_detail.product.name %></td>
-            <td><%= order_detail.product.selling_price %></td>
-            <td><%= order_detail.quantity %></td>
-            <td><%= order_detail.quantity*order_detail.product.selling_price %></td>
+            <td><%= order_detail.product.selling_price %>円</td>
+            <td><%= order_detail.quantity %>個</td>
+            <td><%= order_detail.quantity*order_detail.product.selling_price %>円</td>
           </tr>
           <% end %>
         </tbody>

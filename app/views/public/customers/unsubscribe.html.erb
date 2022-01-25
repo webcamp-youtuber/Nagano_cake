@@ -7,8 +7,8 @@
       <p>退会すると会員情報や、</p></br>
       <p>これまでの履歴が閲覧できなくなります。</p></br>
       <p>退会する場合は、「退会する」をクリックしてください。</p></br>
-      <%= link_to '退会しない', public_customers_path, class: "btn btn-success" %>
-      <%= link_to "退会する", public_customers_withdraw_path, method: :patch, class: "btn btn-danger" %>
+      <%= link_to "退会する", withdrawal_public_customers_path, method: :patch, data: { confilm: "本当に退会しますか？" }, class: "btn btn-danger" %>
+      <%= link_to "退会しない", public_customers_path, class: "btn btn-success" %>
     </div>
   </div>
 </div>

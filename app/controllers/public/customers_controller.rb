@@ -11,11 +11,11 @@ class Public::CustomersController < ApplicationController
   end
 
   def edit
-    @customer = Customer.find_by(params[:id])
+    @customer = current_customer
   end
 
   def update
-    @customer = Customer.find_by(params[:id])
+    @customer = current_customer
     if @customer.update(customer_params)
       flash[:notice] = "You have updated user successfully."
       redirect_to public_customers_path
@@ -27,7 +27,8 @@ class Public::CustomersController < ApplicationController
   def unsubscribe
   end
 
-  def withdraw
+  def withdrawal
+    @customer = current_customer
     current_customer.update(is_deleted: true)
     reset_session
     redirect_to root_path
