@@ -4,6 +4,12 @@
         is_selling:
           on_sale: 販売中
           no_sale: 販売停止中
+
+      order:
+        payment_method:
+          credit_card: "クレジットカード"
+          transfer: "銀行振込"
+
       order:
         order_status:
           waiting_deposit: 入金待ち
@@ -11,6 +17,7 @@
           production: 製作中
           preparing_delivery: 発送準備中
           sent: 発送済み
+
       order_detail:
         production_status:
           not_startable: 着手不可
@@ -18,11 +25,10 @@
           produced: 製作中
           production_completed: 制作完了
 
-
-    views:
-      pagination:
-        first: "≪FIRST"
-        previous: "<BACK"
-        next: "NEXT>"
-        last: "LAST≫"
+      views:
+        pagination:
+          first: "≪FIRST"
+          previous: "<BACK"
+          next: "NEXT>"
+          last: "LAST≫"
 
