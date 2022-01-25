@@ -55,19 +55,19 @@ class Public::OrdersController < ApplicationController
     @order.postage = 800
     if @order.save
      # カート商品の情報を注文商品に移動
-    @cart_items = current_customer.cart_items
-    @cart_items.each do |cart_item|
-    @order_details = OrderDetail.new
-     @order_details.product_id = cart_item.product_id
-     @order_details.order_id = @order.id
-     @order_details.quantity = cart_item.quantity
-     @order_details.payment = cart_item.product.selling_price*cart_item.quantity
-     @order_details.production_status = 0
-     @order_details.save
+      @cart_items = current_customer.cart_items
+      @cart_items.each do |cart_item|
+      @order_details = OrderDetail.new
+      @order_details.product_id = cart_item.product_id
+      @order_details.order_id = @order.id
+      @order_details.quantity = cart_item.quantity
+      @order_details.payment = cart_item.product.selling_price*cart_item.quantity
+      @order_details.production_status = 0
+      @order_details.save
     end
     # 注文完了後、カート商品を空にする
-    @cart_items.destroy_all
-    redirect_to public_orders_complate_path
+      @cart_items.destroy_all
+      redirect_to complate_public_orders_path
     end
   end
 
@@ -80,6 +80,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def index
+    @orders = Order.all
   end
 
 private
