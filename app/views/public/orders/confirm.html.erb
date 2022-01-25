@@ -63,7 +63,7 @@
       <tr>
         <th  class="info">お届け先:</th>
         <td class="text-left">
-          <%= @order.adress %>
+          <%= @order.address %>
         </td>
       </tr>
     </table>
@@ -72,7 +72,7 @@
   <div class="text-center">
     <%= form_with model: @order, url: public_orders_path, method: :post, local: true do |f| %>
       <%= f.hidden_field :post_code %>
-      <%= f.hidden_field :adress %>
+      <%= f.hidden_field :address %>
       <%= f.hidden_field :destination %>
       <%= f.hidden_field :payment_method %>
       <%= f.hidden_field :bill_maney %>
