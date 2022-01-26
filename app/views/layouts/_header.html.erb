@@ -18,7 +18,7 @@
         <ul class="lists-right">
         <% if admin_signed_in? %>
         <!--管理者がログインしている時-->
-          <li><%= link_to "商品一覧",admin_products_path, class: 'fas fa-delicious nav-link text-light' %></li>
+          <li><%= link_to "商品一覧",admin_products_path, class: 'fas fa-birthday-cake nav-link text-light' %></li>
           <li><%= link_to "会員一覧",admin_customers_path, class: 'fas fa-users nav-link text-light' %></li>
           <li><%= link_to "注文履歴一覧",admin_root_path, class: 'fas fa-list nav-link text-light' %></li>
           <li><%= link_to "ジャンル一覧",admin_genres_path, class: 'fas fa-candy-cane nav-link text-light' %></li>
@@ -26,7 +26,7 @@
         <% elsif customer_signed_in? %>
         <!--顧客がログインしている時-->
           <li><%= link_to "マイページ",public_customers_path(current_customer), class: 'fas fa-user nav-link text-light' %></li>
-          <li><%= link_to "商品一覧",public_products_path, class: 'fas fa-delicious nav-link text-light' %></li>
+          <li><%= link_to "商品一覧",public_products_path, class: 'fas fa-birthday-cake nav-link text-light' %></li>
           <li><%= link_to "カート",public_cart_items_path, class: 'fas fa-shopping-cart nav-link text-light' %></li>
           <li><%= link_to "ログアウト",destroy_customer_session_path, method: :delete, class: 'fas fa-sign-out-alt nav-link text-light' %></li>
         <% else %>
