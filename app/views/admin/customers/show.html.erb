@@ -2,7 +2,7 @@
   <div class="row justify-content-center">
     <div class="col-md-4">
       <div class="order-detail text-center">
-        <h4><%= @customer.first_name %>さんの会員詳細</h4>
+        <h4><%= @customer.last_name %>さんの会員詳細</h4>
       </div>
     </div>
   </div>
@@ -14,10 +14,10 @@
         <th>会員ID</th><td><%= @customer.id %></td>
        </tr>
        <tr>
-        <th>氏名</th><td><%= @customer.first_name %><%= @customer.last_name %></td>
+        <th>氏名</th><td><%= @customer.last_name %><%= @customer.first_name %></td>
        </tr>
        <tr>
-        <th>フリガナ</th><td><%= @customer.first_name_kana %><%= @customer.last_name_kana %></td>
+        <th>フリガナ</th><td><%= @customer.last_name_kana %><%= @customer.first_name_kana %></td>
        </tr>
        <tr>
         <th>郵便番号</th><td><%= @customer.post_code%></td>
@@ -48,7 +48,6 @@
   <div class="row justify-content-center">
     <div>
      <%= link_to "編集する", edit_admin_customer_path(@customer) , class: "btn btn-sm btn-success" %>
-     <%= "注文一覧を見る" %>
     </div>
   </div>
 </div>

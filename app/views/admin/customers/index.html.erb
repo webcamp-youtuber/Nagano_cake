@@ -1,17 +1,13 @@
-<br>
 <div class="container">
   <div class="row">
-    <div class="col-md-3">
-      <div class="order text-center">
-        <h3>会員一覧</h3>
+    <div class='col-md-8 offset-md-2'>
+      <div class="col-md-3 mb-3">
+        <div class="order text-center">
+          <h3>会員一覧</h3>
+        </div>
       </div>
-    </div>
-  </div>
-
-  <div class="row justify-content-center">
-    <div class='col-md-9'>
       <table class='table table-hover table-inverse'>
-        <thead>
+        <thead class="table-secondary">
           <tr>
             <th>会員ID</th>
             <th>氏名</th>
@@ -25,7 +21,7 @@
             <td><%= customer.id %></td>
             <td>
               <%= link_to admin_customer_path(customer.id) do %>
-              <%= customer.first_name %><%= customer.last_name %>
+              <%= customer.last_name %><%= customer.first_name %>
               <% end %>
             </td>
             <td><%= customer.email %></td>
@@ -43,5 +39,4 @@
       </table>
     </div>
   </div>
-
 </div>
