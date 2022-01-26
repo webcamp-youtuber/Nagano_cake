@@ -1,18 +1,7 @@
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-3 ml-3">
-      <h4>ジャンル検索</h4>
-      <p class="border"> ジャンル名</p>　<!-- ジャンル名は後ほど入力 -->
-    </div>
-  </div>
-</div>
-
-<!-- ここから商品詳細 -->
-
 <div class="container">
   <div class="row">
     <div class="col-4 mx-5">
-      <%= attachment_image_tag @product, :image, format: "jpeg", fallback: "no_image.jpg", size: "300x200" %>
+      <%= attachment_image_tag @product, :image, format: "jpeg", fallback: "no_image.jpg", size: "360x360" %>
     </div>
 
     <div class="ml-5">

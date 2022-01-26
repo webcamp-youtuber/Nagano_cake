@@ -15,20 +15,27 @@ class Public::OrdersController < ApplicationController
     @order.postage = 800
     if params[:order][:address_number] == "1"
       @order.post_code = current_customer.post_code
-      @order.adress = current_customer.address
-      @order.destination = current_customer.last_name + current_customer.first_name    elsif params[:order][:address_number] == "2"
-      if Address.exists?(name: params[:order][:registered])
+      @order.address = current_customer.address
+      @order.destination = current_customer.last_name + current_customer.first_name
+    elsif params[:order][:address_number] == "2"
+      if Address.find_by(params[:order][:registered])
         @order.post_code = Address.find(params[:order][:registered]).post_code
-        @order.destination = Address.find(params[:order][:registered]).name
-        @order.adress = Address.find(params[:order][:registered]).address
+        @order.destination = Address.find(params[:order][:registered]).destination
+        @order.address = Address.find(params[:order][:registered]).address
       else
-        render.new
+        render :new
       end
-    elsif params[:order][:address_number] == "3"
-      address_new = current_customer.addresses.new(address_params)
+    else params[:order][:address_number] == "3"
+      address_new = current_customer.addresses.new
+      address_new.post_code = params[:order][:post_code]
+      address_new.address = params[:order][:address]
+      address_new.destination = params[:order][:destination]
       if address_new.save
+        @order.post_code = address_new.post_code
+        @order.address = address_new.address
+        @order.destination = address_new.destination
       else
-      render :new
+        render :new
       end
     end
 
@@ -73,20 +80,27 @@ class Public::OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
     @order_details = @order.order_details
+<<<<<<< HEAD
+=======
+    @order.postage = 800
+    #合計金額
+    sum = 0
+    @order_details.each do |order_details|
+      sum += (order_details.quantity * order_details.product.add_tax_price)
+    end
+    @total_price = sum
+    @total_bill_maney = (sum + @order.postage)
+>>>>>>> origin/develop
   end
 
   def index
-    @orders = Order.all
+    @orders = Order.where(customer_id: current_customer.id)
   end
 
 private
 
 def order_params
-  params.require(:order).permit(:customer_id, :bill_maney, :postage, :payment_method, :adress, :post_code, :destination, :order_status)
-end
-
-def address_params
-  params.require(:adress).permit(:name, :address, :post_code)
+  params.require(:order).permit(:customer_id, :bill_maney, :postage, :payment_method, :address, :post_code, :destination, :order_status)
 end
 
 end

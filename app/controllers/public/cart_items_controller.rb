@@ -56,4 +56,3 @@ class Public::CartItemsController < ApplicationController
   end
 
 end
-
