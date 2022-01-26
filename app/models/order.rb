@@ -2,8 +2,8 @@ class Order < ApplicationRecord
 
   belongs_to :customer
   has_many :order_details
-  
-  
+
+
 
  enum order_status: {
    waiting_deposit: 0,
@@ -15,5 +15,7 @@ class Order < ApplicationRecord
 
 
   enum payment_method: { credit_card: 0, transfer: 1 }
+
+  validates :payment_method, presence: true
 
 end
