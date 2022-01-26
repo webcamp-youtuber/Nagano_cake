@@ -1,64 +1,64 @@
 <% provide(:title, "注文情報入力") %>
 
-    <% if current_customer.cart_items.present? %>
-
-      <%= form_with model:@order, url: confirm_public_orders_path, local: true do |f| %>
-      　<div class='container'>
-        　<h3>注文情報入力</h3>
-        　<h3 class="sub-head text-left my-3"><i class="fas fa-yen-sign"></i>支払い方法</h3>
-          <div>
-            <%= f.radio_button :payment_method, Order.payment_methods.key(0) %>
-            <%= f.label :payment_method, Order.payment_methods_i18n[:credit_card] %></br>
-            <%= f.radio_button :payment_method, Order.payment_methods.key(1) %>
-            <%= f.label :payment_method, Order.payment_methods_i18n[:transfer] %>
-          </div>
-            <h3 class="text-left my-3"><i class="fas fa-people-carry"></i>お届け先</h3>
-          <div class='my-3'>
-            <%= f.radio_button :address_number, "1" %>
-            <%= f.label :address_number_1, "ご自身の住所" %></br>
-            <%= "〒#{current_customer.post_code} #{current_customer.address}" %></br>
-            <%= "#{current_customer.last_name} #{current_customer.first_name}" %>
-          </div>
-          <div class='my-3'>
-            <%= f.radio_button :address_number, "2" %>
-            <span>登録済住所から選択</span><br>
-            <%= f.collection_select(:registered, current_customer.addresses.all, :id, :address) %>
-          </div>
-          <div>
-            <table>
-              <tbody>
-                <tr>
-                  <%= f.radio_button :address_number, 3 %>
-                  <%= f.label :address_number_3, "新しいお届け先" %>
-                </tr>
-                <tr>
-                  <th><%= f.label :post_code, "郵便番号(ハイフンなし)" %></th>
-                  <td><%= f.text_field :post_code %></td>
-                </tr>
-                <tr>
-                  <th><%= f.label :address, "住所" %></th>
-                  <td><%= f.text_field :address, :size=>"60" %></td>
-                </tr>
-                <tr>
-                  <th><%= f.label :destination, "名前" %></th>
-                  <td><%= f.text_field :destination %></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div class='text-center'>
-            <%= link_to public_cart_items_path, class: "glyphicon glyphicon-shopping-cart btn btn-info col-xs-1 cart-back" do %>
-              カート(<%= current_customer.cart_items.count %>)へ戻る
-            <% end %>
-            <%= f.submit "確認画面へ進む", class: "btn btn-success" %>
-          </div>
+  <% if current_customer.cart_items.present? %>
+  
+    <%= form_with model:@order, url: confirm_public_orders_path, local: true do |f| %>
+      <div class='container'>
+        <h3>注文情報入力</h3>
+        <h3 class="sub-head text-left my-3"><i class="fas fa-yen-sign"></i>支払い方法</h3>
+        <div>
+          <%= f.radio_button :payment_method, Order.payment_methods.key(0) %>
+          <%= f.label :payment_method, Order.payment_methods_i18n[:credit_card] %></br>
+          <%= f.radio_button :payment_method, Order.payment_methods.key(1) %>
+           <%= f.label :payment_method, Order.payment_methods_i18n[:transfer] %>
         </div>
-      <% end %>
-
-    <% else %>
-　　　<div class='container'>
-       <p class='text-center'>カートに商品がない為、注文情報の入力ができません。</p>
-       <p class='text-center'><%= link_to "商品一覧", public_products_path, class: "btn btn-warning" %>から商品をお探し下さい。</p>
-　　　</div>
-
+          <h3 class="text-left my-3"><i class="fas fa-people-carry"></i>お届け先</h3>
+        <div class='my-3'>
+          <%= f.radio_button :address_number, "1" %>
+          <%= f.label :address_number_1, "ご自身の住所" %></br>
+          <%= "〒#{current_customer.post_code} #{current_customer.address}" %></br>
+          <%= "#{current_customer.last_name} #{current_customer.first_name}" %>
+        </div>
+        <div class='my-3'>
+          <%= f.radio_button :address_number, "2" %>
+          <span>登録済住所から選択</span><br>
+          <%= f.collection_select(:registered, current_customer.addresses.all, :id, :address) %>
+        </div>
+        <div>
+          <table>
+            <tbody>
+              <tr>
+                <%= f.radio_button :address_number, 3 %>
+                <%= f.label :address_number_3, "新しいお届け先" %>
+              </tr>
+              <tr>
+                <th><%= f.label :post_code, "郵便番号(ハイフンなし)" %></th>
+                <td><%= f.text_field :post_code %></td>
+              </tr>
+              <tr>
+                <th><%= f.label :address, "住所" %></th>
+                <td><%= f.text_field :address, :size=>"60" %></td>
+              </tr>
+              <tr>
+                <th><%= f.label :destination, "名前" %></th>
+                <td><%= f.text_field :destination %></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class='text-center'>
+          <%= link_to public_cart_items_path, class: "glyphicon glyphicon-shopping-cart btn btn-info col-xs-1 cart-back" do %>
+            カート(<%= current_customer.cart_items.count %>)へ戻る
+          <% end %>
+          <%= f.submit "確認画面へ進む", class: "btn btn-success" %>
+        </div>
+      </div>
     <% end %>
+    
+  <% else %>
+　　<div class='container'>
+      <p class='text-center'>カートに商品がない為、注文情報の入力ができません。</p>
+      <p class='text-center'><%= link_to "商品一覧", public_products_path, class: "btn btn-warning" %>から商品をお探し下さい。</p>
+　　</div>
+
+  <% end %>
