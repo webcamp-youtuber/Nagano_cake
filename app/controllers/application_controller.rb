@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   #ログイン後の遷移設定
   def after_sign_in_path_for(resource)
     if customer_signed_in?
-       public_customers_path
+       root_path
     else
        admin_root_path
     end
