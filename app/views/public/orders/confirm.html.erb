@@ -1,0 +1,89 @@
+<% provide(:title, "注文情報確認") %>
+<div class="container">
+  <h2 class="text-center">注文情報確認</h2>
+  <div calss="row">
+    <div>
+    <% if current_customer.cart_items.present? %>
+      <table class="table col-lg-12" >
+        <thead>
+          <tr class="info">
+            <br></br>
+            <td class="text-left table-secondary col-lg-7">商品名</td>
+            <td class="text-right table-secondary">単価(税込)</td>
+            <td class="text-right table-secondary">数量</td>
+            <td class="text-right table-secondary">小計</td>
+          </tr>
+        </thead>
+        <tbody>
+          <% @cart_items.each do |cart_item| %>
+            <tr>
+              <td class="text-left">
+                <%= cart_item.product.name %>
+                <%= attachment_image_tag(cart_item.product, :image, size: "75x50", fallback: "no_image.jpg") %>
+              </td>
+              <td class="text-right">
+                ¥<%= cart_item.product.add_tax_price %>
+              </td>
+              <td class="text-right">
+                  <%= cart_item.quantity %>
+              </td>
+              <td class="text-right">
+                ¥<%= cart_item.subtotal %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <table class="table col-12">
+          <tr>
+            <th class="info">送料</th>
+            <td class="text-right">¥<%= @order.postage %></td>
+          </tr>
+          <tr>
+            <th class="info">商品合計</th>
+            <td class="text-right">¥<%= @total_price %></td>
+          </tr>
+          <tr>
+            <th class="info">請求金額</th>
+            <td class="text-right">¥<%= @order.bill_maney %></td>
+          </tr>
+      </table>
+    </div>
+  </div>
+  <div>
+    <table>
+      <tr>
+        <th  class="info">支払方法:</th>
+        <td class="text-left">
+          <%= @order.payment_method_i18n %>
+        </td>
+      </tr>
+      <tr>
+        <th  class="info">お届け先:</th>
+        <td class="text-left">
+          <%= @order.address %>
+        </td>
+      </tr>
+    </table>
+    <br></br>
+  </div>
+  <div class="text-center">
+    <%= form_with model: @order, url: public_orders_path, method: :post, local: true do |f| %>
+      <%= f.hidden_field :post_code %>
+      <%= f.hidden_field :address %>
+      <%= f.hidden_field :destination %>
+      <%= f.hidden_field :payment_method %>
+      <%= f.hidden_field :bill_maney %>
+      <%= link_to "注文情報入力へ戻る", new_public_order_path, data: {"turbolinks" => false}, class: "btn btn-primary" %>
+          <i class="fas fa-shipping-fast fa-2x"></i>
+      <%= f.submit "購入を確定する", class: "btn btn-warning center-block" %>
+    <% end %>
+  </div>
+    <% else %>
+      <!-- if カートアイテムがない時 -->
+      <p>カートに商品がない為、注文確定ができません。</p>
+      <p><%= link_to "商品一覧", public_products_path %>から商品をお探し下さい。</p>
+    <% end %>
+</div>

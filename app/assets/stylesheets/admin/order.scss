@@ -1,0 +1,24 @@
+// Place all the styles related to the admin/order controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "bootstrap";
+@import 'font-awesome-sprockets';
+@import 'font-awesome';
+
+//top
+.order{
+  background-color: rgba( 0, 0, 0, 0.3);
+}
+
+//show
+.order-detail{
+  background-color: rgba( 0, 0, 0, 0.3);
+}
+
+.maney{
+  position: absolute;
+  bottom: 22px;
+  right: 22px;
+}
+//共通

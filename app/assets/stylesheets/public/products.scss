@@ -1,0 +1,17 @@
+// Place all the styles related to the public/products controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.product{
+  display:flex;
+  flex-wrap:wrap;
+}
+.card{
+  margin:10px 10px;
+}
+
+.card-footer{
+  position: absolute;
+  bottom: 10px;
+  right: 120px;
+}
