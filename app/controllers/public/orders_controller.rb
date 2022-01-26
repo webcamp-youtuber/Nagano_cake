@@ -25,7 +25,7 @@ class Public::OrdersController < ApplicationController
       else
         render :new
       end
-    else params[:order][:address_number] == "3"
+    else params[:order][:address_number] =="3"
       address_new = current_customer.addresses.new
       address_new.post_code = params[:order][:post_code]
       address_new.address = params[:order][:address]
@@ -80,8 +80,6 @@ class Public::OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
     @order_details = @order.order_details
-<<<<<<< HEAD
-=======
     @order.postage = 800
     #合計金額
     sum = 0
@@ -90,7 +88,6 @@ class Public::OrdersController < ApplicationController
     end
     @total_price = sum
     @total_bill_maney = (sum + @order.postage)
->>>>>>> origin/develop
   end
 
   def index
