@@ -14,8 +14,14 @@ class ApplicationController < ActionController::Base
   end
 
 #ログアウト後の遷移設定
-  def after_sign_out_path_for(resource)
-      root_path
+  def after_sign_out_path_for(resource_or_scope)
+    if resource_or_scope == :user
+        root_path
+    elsif resource_or_scope == :admin
+        new_admin_session_path
+    else
+        root_path
+    end
   end
 
   #会員新規登録の保存機能
