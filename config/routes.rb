@@ -12,7 +12,12 @@ root 'homes#top'
 namespace :public do #namespace :customersをpublicに変更しました。
 
 
-  resource :customers, only: [:show, :update, :edit, :unsubscribe, :withdraw]
+  resource :customers, only: [:show, :update, :edit] do
+    # 退会確認画面
+    get '/customers/unsubscribe' => 'customers#unsubscribe', as: 'unsubscribe'
+    # 論理削除用のルーティング
+    patch '/customers/withdrawal' => 'customers#withdrawal', as: 'withdrawal'
+  end
   resources :addresses, only: [:index, :create, :edit, :update, :destroy]
   resources :products, only: [:index, :show]
   resources :cart_items, only: [:index, :create, :update, :destroy] do
