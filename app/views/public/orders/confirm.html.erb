@@ -76,7 +76,7 @@
       <%= f.hidden_field :destination %>
       <%= f.hidden_field :payment_method %>
       <%= f.hidden_field :bill_maney %>
-      <%= link_to "注文情報入力へ戻る", new_public_order_path, data: {"turbolinks" => false}, class: "btn btn-info back" %>
+      <%= link_to "注文情報入力へ戻る", new_public_order_path, data: {"turbolinks" => false}, class: "btn btn-primary" %>
           <i class="fas fa-shipping-fast fa-2x"></i>
       <%= f.submit "購入を確定する", class: "btn btn-warning center-block" %>
     <% end %>

@@ -5,12 +5,12 @@
       <% if admin_signed_in? %>
         <%= link_to admin_root_path, class: 'header-title' do %>
           <div>Nagano-Cake</div>
-          <div class='header-sub-title'>〜丘の小さなケーキ屋さん〜</div>
+          <div class='header-sub-title'>〜長野の丘のケーキ屋さん〜</div>
         <% end %>
       <% else %>
         <%= link_to root_path, class: 'header-title' do %>
           <div>Nagano-Cake</div>
-          <div class='header-sub-title'>〜丘の小さなケーキ屋さん〜</div>
+          <div class='header-sub-title'>〜長野の丘のケーキ屋さん〜</div>
         <% end %>
       <% end %>
 
@@ -38,6 +38,12 @@
         <% end %>
         </ul>
       </div>
+    </div>
+    <div class="header-right">
+      <div class="header-search">
+　　　　<input type="text" minlength="4" maxlength="8" size="30">
+　　　　<a href="" class="btn btn-secondary">検索</a>
+　　　</div>
     </div>
 
 </header>
